@@ -104,20 +104,6 @@ jobs:
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
 
-    - name: ZN-M2 写入ImmortalWrt APK源
-      run: |
-       cd $OPENWRT_PATH
-       mkdir -p package/base-files/files/etc/apk/repositories.d
-       cat > package/base-files/files/etc/apk/repositories.d/distfeeds.list <<EOF
-       https://downloads.immortalwrt.org/snapshots/targets/qualcommax/ipq60xx/packages
-       https://downloads.immortalwrt.org/snapshots/packages/aarch64_cortex-a53/base
-       https://downloads.immortalwrt.org/snapshots/packages/aarch64_cortex-a53/luci
-       https://downloads.immortalwrt.org/snapshots/packages/aarch64_cortex-a53/packages
-       https://downloads.immortalwrt.org/snapshots/packages/aarch64_cortex-a53/routing
-       https://downloads.immortalwrt.org/snapshots/packages/aarch64_cortex-a53/telephony
-       EOF
-       cat package/base-files/files/etc/apk/repositories.d/distfeeds.list
-
     - name: Download DL Package(下载DL软件包)
       run: |
         cd $OPENWRT_PATH
