@@ -1,15 +1,7 @@
 #!/bin/bash
 
-# 首次开机自动设置LAN IP 10.0.0.1
-mkdir -p package/base-files/files/etc/uci-defaults
-cat > package/base-files/files/etc/uci-defaults/99-set-lanip <<EOF
-uci set network.lan.ipaddr="10.0.0.1"
-uci set network.lan.netmask="255.255.255.0"
-uci commit network
-EOF
-chmod +x package/base-files/files/etc/uci-defaults/99-set-lanip
-
 # 修改默认IP
+sed -i '/lan.*ipaddr/s/192.168.1.1/10.0.0.1/g' package/base-files/lib/functions/uci-defaults.sh
 # sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 
 # 更改默认 Shell 为 zsh
